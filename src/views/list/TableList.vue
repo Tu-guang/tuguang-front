@@ -207,10 +207,6 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        // return getServiceList(requestParameters)
-        //   .then(res => {
-        //     return res.result
-        //   })
       },
       selectedRowKeys: [],
       selectedRows: []

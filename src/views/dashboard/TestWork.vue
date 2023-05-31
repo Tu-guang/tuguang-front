@@ -65,7 +65,6 @@ export default {
       this.$multiTab.closeCurrentPage() // or this.$multiTab.close()
     },
     handleOpenTab () {
-      this.$multiTab.open('/features/task')
     },
 
     handleOpenLoading () {

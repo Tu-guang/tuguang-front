@@ -140,16 +140,8 @@ export default {
     ...mapGetters(['nickname', 'avatar'])
   },
   mounted () {
-    // this.getTeams()
   },
   methods: {
-    getTeams () {
-      this.$http.get('/workplace/teams').then(res => {
-        this.teams = res.result
-        this.teamSpinning = false
-      })
-    },
-
     handleTabChange (key, type) {
       this[type] = key
     },

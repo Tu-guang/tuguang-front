@@ -52,20 +52,7 @@ export default {
   },
   methods: {
     handleTabChange (key) {
-      this.tabActiveKey = key
-      switch (key) {
-        case '1':
-          this.$router.push('/list/search/article')
-          break
-        case '2':
-          this.$router.push('/list/search/project')
-          break
-        case '3':
-          this.$router.push('/list/search/application')
-          break
-        default:
-          this.$router.push('/workplace')
-      }
+
     }
   }
 }

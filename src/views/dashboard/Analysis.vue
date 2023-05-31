@@ -321,7 +321,6 @@ export default {
     return {
       loading: true,
       rankList,
-
       // 搜索用户数
       searchUserData,
       searchUserScale,
@@ -329,7 +328,6 @@ export default {
 
       barData,
       barData2,
-
       //
       pieScale,
       pieData,
