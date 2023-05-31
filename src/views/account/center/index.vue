@@ -140,7 +140,7 @@ export default {
     ...mapGetters(['nickname', 'avatar'])
   },
   mounted () {
-    this.getTeams()
+    // this.getTeams()
   },
   methods: {
     getTeams () {

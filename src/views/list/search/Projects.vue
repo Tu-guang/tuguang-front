@@ -109,7 +109,7 @@ export default {
     }
   },
   mounted () {
-    this.getList()
+    // this.getList()
   },
   methods: {
     handleChange (value) {

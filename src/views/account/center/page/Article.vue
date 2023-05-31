@@ -48,7 +48,7 @@ export default {
     }
   },
   mounted () {
-    this.getList()
+    // this.getList()
   },
   methods: {
     getList () {
@@ -59,12 +59,12 @@ export default {
       })
     },
     loadMore () {
-      this.loadingMore = true
-      this.$http.get('/list/article').then(res => {
-        this.data = this.data.concat(res.result)
-      }).finally(() => {
-        this.loadingMore = false
-      })
+      // this.loadingMore = true
+      // this.$http.get('/list/article').then(res => {
+      //   this.data = this.data.concat(res.result)
+      // }).finally(() => {
+      //   this.loadingMore = false
+      // })
     }
   }
 }
