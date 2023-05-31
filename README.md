@@ -1,4 +1,4 @@
-[English](./README.md) | 简体中文
+English | [简体中文](./README.zh-CN.md)
 
 <h1 align="center">Ant Design Vue Pro</h1>
 <div align="center">
