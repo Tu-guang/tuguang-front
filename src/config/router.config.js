@@ -37,6 +37,23 @@ export const asyncRouterMap = [
           }
         ]
       },
+
+      // InterfaceInfolist
+      {
+        path: '/interfaceInfo',
+        name: 'InterfaceInfo',
+        component: RouteView,
+        redirect: '/interfaceInfo/list',
+        meta: { title: 'menu.interfaceInfo', icon: 'table', permission: ['interfaceInfo'] },
+        children: [
+          {
+            path: '/interfaceInfo/list/:pageNo([1-9]\\d*)?',
+            name: 'InterfaceInfoListWrapper',
+            hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+            component: () => import('@/views/InterfaceInfolist/InterfaceInfoList.vue'),
+            meta: { title: 'menu.interfaceInfo.list', keepAlive: true, permission: ['interfaceInfo'] }
+          }]
+      },
       // list
       {
         path: '/list',

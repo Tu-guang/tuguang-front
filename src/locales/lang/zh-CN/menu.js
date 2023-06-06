@@ -5,6 +5,8 @@ export default {
     'menu.dashboard.analysis': '分析页',
     'menu.dashboard.monitor': '监控页',
     'menu.dashboard.workplace': '工作台',
+    'menu.interfaceInfo': '接口信息',
+    'menu.interfaceInfo.list': '接口',
     'menu.list': '列表页',
     'menu.list.table-list': '查询表格',
     'menu.list.basic-list': '标准列表',

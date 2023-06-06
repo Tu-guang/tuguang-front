@@ -3,7 +3,7 @@ import expirePlugin from 'store/plugins/expire'
 import { login, getInfo, logout } from '@/api/login'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
-import info from '@/utils/role'
+import { info, infoUser } from '@/utils/role'
 
 storage.addPlugin(expirePlugin)
 const user = {
@@ -40,7 +40,7 @@ const user = {
     Login ({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
-          const result = response.data
+          const result = response
           storage.set(ACCESS_TOKEN, 'result.token', new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
           commit('SET_TOKEN', 'result.token')
           resolve(result)
@@ -58,7 +58,9 @@ const user = {
           const { data } = response
           const result = data
           console.log('result:', response)
-          result.role = info
+          if (result.userRole === 'admin') { result.role = info } else {
+            result.role = infoUser
+          }
           // console.log(info)
           if (result.role && result.role.permissions.length > 0) {
             const role = { ...result.role }

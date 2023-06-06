@@ -50,7 +50,8 @@ export default {
   mounted () {
     setTimeout(() => {
       this.currentUser = {
-        name: 'Serati Ma'
+        name: this.$store.getters.userInfo.userName,
+        avatar: this.$store.getters.userInfo.userAvatar
       }
     }, 1500)
   }

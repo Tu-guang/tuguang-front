@@ -113,18 +113,6 @@
               <radar :data="radarData" />
             </div>
           </a-card>
-          <a-card :loading="loading" title="团队" :bordered="false">
-            <div class="members">
-              <a-row>
-                <a-col :span="12" v-for="(item, index) in teams" :key="index">
-                  <a>
-                    <a-avatar size="small" :src="item.avatar" />
-                    <span class="member">{{ item.name }}</span>
-                  </a>
-                </a-col>
-              </a-row>
-            </div>
-          </a-card>
         </a-col>
       </a-row>
     </div>
@@ -207,8 +195,8 @@ export default {
     }),
     currentUser () {
       return {
-        name: 'Serati Ma',
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
+        name: this.user.userName,
+        avatar: this.user.userAvatar
       }
     },
     userInfo () {

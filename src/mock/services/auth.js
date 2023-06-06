@@ -12,7 +12,6 @@ const login = (options) => {
   if (!username.includes(body.username) || !password.includes(body.password)) {
     return builder({ isLogin: true }, '账户或密码错误', 401)
   }
-
   return builder({
     'id': Mock.mock('@guid'),
     'name': Mock.mock('@name'),
