@@ -2,7 +2,7 @@ export default {
     'menu.welcome': 'Welcome',
     'menu.home': 'Home',
     'menu.dashboard': 'Dashboard',
-    'menu.dashboard.analysis': 'Analysis',
+    'menu.dashboard.interfaceIndex': 'InterfaceIndex',
     'menu.dashboard.monitor': 'Monitor',
     'menu.dashboard.workplace': 'Workplace',
     'menu.interfaceInfo': 'InterfaceInfo',

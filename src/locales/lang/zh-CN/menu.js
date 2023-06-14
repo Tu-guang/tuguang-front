@@ -2,7 +2,7 @@ export default {
     'menu.welcome': '欢迎',
     'menu.home': '主页',
     'menu.dashboard': '仪表盘',
-    'menu.dashboard.analysis': '分析页',
+    'menu.dashboard.interfaceIndex': '接口',
     'menu.dashboard.monitor': '监控页',
     'menu.dashboard.workplace': '工作台',
     'menu.interfaceInfo': '接口信息',

@@ -13,7 +13,7 @@
       广告代码 真实项目中请移除
       production remove this Ads
     -->
-    <ads v-if="isProPreviewSite && !collapsed"/>
+    <ads v-if="isProPreviewSite && !collapsed" />
     <!-- Ads end -->
 
     <!-- 1.0.0+ 版本 pro-layout 提供 API，
@@ -31,7 +31,10 @@
     <template v-slot:headerContentRender>
       <div>
         <a-tooltip title="刷新页面">
-          <a-icon type="reload" style="font-size: 18px;cursor: pointer;" @click="() => { $message.info('只是一个DEMO') }" />
+          <a-icon
+            type="reload"
+            style="font-size: 18px;cursor: pointer;"
+            @click="refresh" />
         </a-tooltip>
       </div>
     </template>
@@ -141,6 +144,10 @@ export default {
     }
   },
   methods: {
+    refresh () {
+      location.reload()
+      // this.$message.info('只是一个DEMO')
+    },
     i18nRender,
     handleMediaQuery (val) {
       this.query = val
@@ -179,6 +186,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang='less'>
 @import "./BasicLayout.less";
 </style>

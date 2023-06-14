@@ -24,10 +24,17 @@ export const asyncRouterMap = [
         meta: { title: 'menu.dashboard', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
         children: [
           {
-            path: '/dashboard/analysis/:pageNo([1-9]\\d*)?',
-            name: 'Analysis',
-            component: () => import('@/views/dashboard/Analysis'),
-            meta: { title: 'menu.dashboard.analysis', keepAlive: false, permission: ['dashboard'] }
+            path: '/dashboard/interfaceIndex/:pageNo([1-9]\\d*)?',
+            name: 'InterfaceIndex',
+            component: () => import('@/views/dashboard/InterfaceIndex.vue'),
+            meta: { title: 'menu.dashboard.interfaceIndex', keepAlive: false, permission: ['dashboard'] }
+          },
+          {
+            path: '/dashboard/interfaceShow/:id',
+            name: 'InterfaceShow',
+            component: () => import('@/views/dashboard/Show.vue'),
+            hidden: true,
+            meta: { title: 'menu.dashboard.interfaceIndex', keepAlive: false, permission: ['dashboard'] }
           },
           {
             path: '/dashboard/workplace',

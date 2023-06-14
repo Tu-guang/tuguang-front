@@ -12,6 +12,8 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'generator-star-spacing': 'off',
     'no-mixed-operators': 0,
+    'vue/no-v-model-argument': 'off',
+    'vue/valid-v-model': 'off',
     'vue/max-attributes-per-line': [
       2,
       {

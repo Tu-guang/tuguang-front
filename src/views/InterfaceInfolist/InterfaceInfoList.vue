@@ -31,7 +31,7 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="接口名称">
-                  <a-input v-model="queryParam.name" style="width: 100%" placeholder="请输入接口名称"/>
+                  <a-input v-model="queryParam.name" style="width: 100%" placeholder="请输入接口名称" />
                 </a-form-item>
               </a-col>
             </template>
@@ -72,36 +72,47 @@
         </a-dropdown>
       </div>
 
-      <s-table
-        ref="table"
-        size="default"
-        rowKey="id"
-        :columns="columns"
-        :data="loadData"
-        :alert="true"
-        :rowSelection="rowSelection"
-        showPagination="auto"
-      >
-        <span slot="status" slot-scope="text">
-          <a-badge :status="text | statusTypeFilter" :text="text | statusFilter" />
-        </span>
-        <span slot="description" slot-scope="text">
-          <ellipsis :length="4" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="url" slot-scope="text">
-          <ellipsis :length="4" tooltip>{{ text }}</ellipsis>
-        </span>
+      <a-spin :spinning="OnOrOfflineLoading">
+        <s-table
+          ref="table"
+          size="default"
+          rowKey="id"
+          :columns="columns"
+          :data="loadData"
+          :alert="true"
+          :rowSelection="rowSelection"
+          showPagination="auto"
+        >
+          <span slot="status" slot-scope="text">
+            <a-badge :status="text | statusTypeFilter" :text="text | statusFilter" />
+          </span>
+          <span slot="description" slot-scope="text">
+            <ellipsis :length="4" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="url" slot-scope="text">
+            <ellipsis :length="4" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="requestHeader" slot-scope="text">
+            <ellipsis :length="8" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="responeHeader" slot-scope="text">
+            <ellipsis :length="8" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="params" slot-scope="text">
+            <ellipsis :length="8" tooltip>{{ text }}</ellipsis>
+          </span>
 
-        <span slot="action" slot-scope="text, record">
-          <template>
-            <a @click="handleEdit(record)">{{ record.status===0?'发布':'下线' }}</a>
-            <a-divider type="vertical" />
-            <a @click="handleEdit(record)">修改</a>
-            <a-divider type="vertical" />
-            <a @click="handleDel(record)" style="color:red;">删除</a>
-          </template>
-        </span>
-      </s-table>
+          <span slot="action" slot-scope="text, record">
+            <template>
+              <a @click="handleOnOrOff(record)">{{ record.status === 0 ? '发布' : '下线' }}</a>
+              <a-divider type="vertical" />
+              <a @click="handleEdit(record)">修改</a>
+              <a-divider type="vertical" />
+              <a @click="handleDel(record)" style="color:red;">删除</a>
+            </template>
+          </span>
+        </s-table>
+      </a-spin>
 
       <create-form
         ref="createModal"
@@ -118,7 +129,14 @@
 <script>
 import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
-import { addlnterfacelnfo, deleteInterfaceInfo, interfacelist, updateInterfaceInfo } from '@/api/Interface'
+import {
+  addlnterfacelnfo,
+  deleteInterfaceInfo,
+  interfacelist,
+  offlineInterfaceInfo,
+  onlineInterfaceInfo,
+  updateInterfaceInfo
+} from '@/api/Interface'
 import CreateForm from './modules/CreateForm'
 
 const columns = [
@@ -142,15 +160,18 @@ const columns = [
   },
   {
     title: '请求头',
-    dataIndex: 'requestHeader'
+    dataIndex: 'requestHeader',
+    scopedSlots: { customRender: 'requestHeader' }
   },
   {
     title: '响应头',
-    dataIndex: 'responeHeader'
+    dataIndex: 'responeHeader',
+    scopedSlots: { customRender: 'responeHeader' }
   },
   {
     title: '请求参数',
-    dataIndex: 'params'
+    dataIndex: 'params',
+    scopedSlots: { customRender: 'params' }
   },
 
   {
@@ -215,6 +236,7 @@ export default {
       // create model
       visible: false,
       confirmLoading: false,
+      OnOrOfflineLoading: false,
       mdl: null,
       // 高级搜索 展开/关闭
       advanced: false,
@@ -253,6 +275,29 @@ export default {
     }
   },
   methods: {
+    handleOnOrOff (records) {
+      this.OnOrOfflineLoading = true
+      if (records.status === 0) {
+        onlineInterfaceInfo(records).then((res) => {
+          if (res.code === 0) {
+            this.$message.success('发布成功')
+            this.$refs.table.refresh()
+          } else {
+            this.$message.error('发布失败')
+          }
+        })
+      } else {
+        offlineInterfaceInfo(records).then((res) => {
+          if (res.code === 0) {
+            this.$message.success('下线成功')
+            this.$refs.table.refresh()
+          } else {
+            this.$message.error('下线失败')
+          }
+        })
+      }
+      this.OnOrOfflineLoading = false
+    },
     handleAdd () {
       this.mdl = null
       this.visible = true
