@@ -58,7 +58,14 @@ const user = {
           const { data } = response
           const result = data
           console.log('result:', response)
-          if (result.userRole === 'admin') { result.role = info } else {
+          if (response.code !== 0) {
+            // eslint-disable-next-line prefer-promise-reject-errors
+            reject('登录过期，请重新登录')
+            return
+          }
+          if (result.userRole === 'admin') {
+            result.role = info
+          } else {
             result.role = infoUser
           }
           // console.log(info)
@@ -87,6 +94,7 @@ const user = {
             reject(new Error('getInfo: roles must be a non-null array !'))
           }
         }).catch(error => {
+          console.log(error)
           reject(error)
         })
       })
