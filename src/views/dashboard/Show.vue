@@ -8,8 +8,8 @@
     <a-card :bordered="false" :bodyStyle="{ padding: '24px', height: '100%' }" :style="{ height: '100%' }">
       <a-descriptions :title="records.name" v-if="records.id!==undefined" :column="1">
         <a-descriptions-item label="请求头">{{ records.requestHeader }}</a-descriptions-item>
-        <a-descriptions-item label="响应头">{{ records.responeHeader }}</a-descriptions-item>
-        <a-descriptions-item label="参数">{{ records.params }}</a-descriptions-item>
+        <a-descriptions-item label="响应头">{{ records.responseHeader }}</a-descriptions-item>
+        <a-descriptions-item label="参数">{{ records.requestParams }}</a-descriptions-item>
         <a-descriptions-item label="请求方法">{{ records.method }}</a-descriptions-item>
         <a-descriptions-item label="状态">{{ records.status }}</a-descriptions-item>
         <a-descriptions-item label="更新时间">{{ records.updateTime }}</a-descriptions-item>
